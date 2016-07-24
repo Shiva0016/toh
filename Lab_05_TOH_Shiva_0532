@@ -1,0 +1,37 @@
+/*
+Program to show the solution of Tower of Hanoi problem using recursive method
+*/
+#include<stdio.h>
+#include<conio.h>
+void tower(int,char,char,char);		//Function declaration
+main()
+{
+	int n;
+	char  source='S', auxillary='A' ,destination='D';
+	printf("Enter a number of disk in source:\n");
+	scanf("%d",&n);
+	printf("Arrangement  of disk \n");
+	tower(n,source,auxillary,destination);
+	printf("\n");
+}
+/*
+Function to return the number of moves required to transfer 'n' number of disk 
+from source to destination using auxillary tower
+*/
+void tower(int n,char source,char auxillary,char destination)
+{
+	if(n==1)
+	{
+		printf("Move disk %d from %c to %c \n",n,source,destination);		//Directly transfer from source to destination due to presence of single disk
+		return 0;
+	}
+	/*
+	Move top 'n-1' disks from source to auxillary using destination as auxillary
+	*/
+	tower(n-1,source,destination,auxillary);
+	printf("Move disk %d from %c to %c \n",n,source,destination);
+	/*
+	Move 'n-1' disk from auxillary to destination using source as auxillary
+	*/
+	tower(n-1,auxillary,source,destination);
+}
